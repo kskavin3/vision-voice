@@ -1,18 +1,22 @@
-[
-    {
-      "type": "text",
-      "text": "What’s in this image?"
-    },
-    {
-      "type": "image_url",
-      "image_url": {
-        "url": f"data:image/jpeg;base64,{base64_image}"
-      }
-    },
-    {
-        "type": "image_url",
-        "image_url": {
-          "url": f"data:image/jpeg;base64,{base64_image1}"
+{"model": "gpt-4o", 
+"messages": [{
+    "role": "user", 
+    "content": [
+        {
+            "type": "text",
+            "text": "Give me narrative of the set of images"
+        },
+        {
+            "type": "image_url",
+            "image_url": {"url": "http://res.cloudinary.com/dwdssg9dc/image/upload/v1719597012/lsalkngg67edtagnjgan.jpg"}
+        },
+        {
+            "type": "image_url",
+            "image_url": {"url": "http://res.cloudinary.com/dwdssg9dc/image/upload/v1719597013/tonu2m8axdvgfbs6tds3.jpg"}
+        },
+        {
+            "type": "image_url",
+            "image_url": {"url": "http://res.cloudinary.com/dwdssg9dc/image/upload/v1719597014/uyxppzsnq8qabekpup9a.jpg"}
         }
-      }
-]
+        ]
+        }], "max_tokens": 300} 

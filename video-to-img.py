@@ -26,7 +26,6 @@ def extract_frames(video_path, output_folder, interval=1):
         # Read the next frame
         success, image = video_capture.read()
         count += 1
-
     video_capture.release()
     print(f"Extracted {saved_count} frames from the video.")
 

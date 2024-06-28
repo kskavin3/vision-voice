@@ -9,7 +9,6 @@ import cloudinary.api
 # OpenAI API Key
 api_key = "sk-vision-voice-account-xtYm3cRdH8lgDX8cEwbsT3BlbkFJbLgdA5jTlQCc2VmJisJg"
 
-
 # Configure your Cloudinary credentials
 cloudinary.config(
   cloud_name = 'dwdssg9dc',
@@ -24,14 +23,13 @@ def upload_images_to_cloudinary(folder_path):
             file_path = os.path.join(folder_path, filename)
             response = cloudinary.uploader.upload(file_path)
             uploaded_urls.append(response['url'])
-    print(uploaded_urls)
     return uploaded_urls
 
-def generate_json_from_folder(folder_path):
+def generate_content_from_folder(folder_path):
     content = [
         {
             "type": "text",
-            "text": "Give me narrative of the set of images"
+            "text": "Give me a story that I can feed to AI voice based model to be narrated to a blind person"
         }
     ]
     
@@ -44,23 +42,12 @@ def generate_json_from_folder(folder_path):
             }
         })
     
-    return json.dumps(content, indent=4)
+    return content
 
 # Example usage
 folder_path = "output_frames"
-json_content = generate_json_from_folder(folder_path)
-print(json_content)
-
-# Function to encode the image
-def encode_image(image_path):
-  with open(image_path, "rb") as image_file:
-    return base64.b64encode(image_file.read()).decode('utf-8')
-
-# Path to your image
-image_path = "frame_0010.jpg"
-
-# Getting the base64 string
-base64_image = encode_image(image_path)
+content = generate_content_from_folder(folder_path)
+print(content)
 
 headers = {
   "Content-Type": "application/json",
@@ -72,7 +59,7 @@ payload = {
   "messages": [
     {
       "role": "user",
-      "content": json_content
+      "content": content
     }
   ],
   "max_tokens": 300
