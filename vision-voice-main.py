@@ -29,7 +29,7 @@ def generate_content_from_folder(folder_path):
     content = [
         {
             "type": "text",
-            "text": "Give me a story that I can feed to AI voice based model to be narrated to a blind person"
+            "text": "Give me a short story from set of images that I can feed to a AI Voice model"
         }
     ]
     
@@ -68,4 +68,11 @@ print(payload)
 
 response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
 
-print(response.json())
+response_json = response.json()
+print(response_json)
+
+# Store the 'content' field in a text file
+if 'choices' in response_json and len(response_json['choices']) > 0:
+    content_text = response_json['choices'][0]['message']['content']
+    with open("response_content.txt", "w") as text_file:
+        text_file.write(content_text)
